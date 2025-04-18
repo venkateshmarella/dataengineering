@@ -1,7 +1,7 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import explode, split, col
 
-def word_count(input_path, output_path):
+def word_count(input_path, output_path,test_run:bool =False):
     # Create a SparkSession
     spark = SparkSession.builder \
         .appName("Word Count") \
@@ -16,8 +16,11 @@ def word_count(input_path, output_path):
     # Group by words and count
     word_count_df = words_df.groupBy("word").count()
 
+    word_count_df.show()
+
     # Write the output to the specified path
-    word_count_df.write.csv(output_path, header=True)
+    word_count_df.write.mode("overwrite").csv(output_path, header=True)
 
     # Stop the SparkSession
-    spark.stop()
+    if not test_run:
+        spark.stop()

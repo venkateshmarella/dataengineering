@@ -1,7 +1,9 @@
 import os
 import shutil
 from pyspark.sql import SparkSession
-from word_count import word_count
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+from main.word_count import word_count
 
 def test_word_count():
     # Create a SparkSession
@@ -21,7 +23,7 @@ def test_word_count():
         f.write("hello world hello\n")
 
     # Run the word count program
-    word_count(input_path, output_path)
+    word_count(input_path, output_path,True)
 
     # Read the output
     output_df = spark.read.csv(output_path, header=True)
@@ -37,7 +39,10 @@ def test_word_count():
     shutil.rmtree(output_path)
 
     # Stop the SparkSession
-    spark.stop()
+    try:
+        spark.stop()
+    except NameError:
+        print("spark session is already stopped")
 
 # Run the test
 if __name__ == "__main__":
