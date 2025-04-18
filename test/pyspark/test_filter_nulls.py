@@ -2,8 +2,8 @@ import unittest
 import os,sys
 import shutil
 from pyspark.sql import SparkSession
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
-from main.filter_nulls import filter_invalid_rows
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../src')))
+from main.pyspark.filter_nulls import filter_invalid_rows
 
 class TestUtils(unittest.TestCase):
     def test_filter_invalid_rows(self):

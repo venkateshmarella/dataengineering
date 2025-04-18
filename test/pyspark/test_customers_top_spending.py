@@ -1,9 +1,9 @@
 import unittest
 import os,sys
 import shutil
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../src')))
 from pyspark.sql import SparkSession
-from main.customer_top_spending import calculate_top_customers
+from main.pyspark.customer_top_spending import calculate_top_customers
 
 
 class TestUtils(unittest.TestCase):

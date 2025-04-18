@@ -2,8 +2,8 @@ import os
 import shutil
 from pyspark.sql import SparkSession
 import sys
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
-from main.word_count import word_count
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../src')))
+from main.pyspark.word_count import word_count
 
 def test_word_count():
     # Create a SparkSession

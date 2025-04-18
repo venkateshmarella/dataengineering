@@ -17,6 +17,8 @@ def calculate_top_customers(input_path, output_path,test_run =False):
     # Get the top 5 customers by spending
     top_customers_df = customer_spending_df.orderBy(col("total_spending").desc()).limit(5)
 
+    top_customers_df.show()
+
     # Write the result to the output path
     top_customers_df.write.mode("overwrite").csv(output_path, header=True)
 
