@@ -1,7 +1,7 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, sum as _sum
 
-def calculate_top_customers(input_path, output_path):
+def calculate_top_customers(input_path, output_path,test_run =False):
     # Initialize SparkSession
     spark = SparkSession.builder \
         .appName("Top Customers by Spending") \
@@ -18,7 +18,8 @@ def calculate_top_customers(input_path, output_path):
     top_customers_df = customer_spending_df.orderBy(col("total_spending").desc()).limit(5)
 
     # Write the result to the output path
-    top_customers_df.write.csv(output_path, header=True)
+    top_customers_df.write.mode("overwrite").csv(output_path, header=True)
 
     # Stop SparkSession
-    spark.stop()
+    if not test_run:
+        spark.stop()
