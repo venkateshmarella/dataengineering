@@ -1,19 +1,22 @@
 import os
 import shutil
 from pyspark.sql import SparkSession
-from join_datasets import join_datasets
+from src.main.pyspark.join_dataframes import join_datasets
 
 def test_join_datasets():
     # Initialize SparkSession
     spark = SparkSession.builder \
         .appName("Join Datasets Test") \
         .master("local[1]") \
+        .config("spark.hadoop.fs.file.impl.disable.cache", "true") \
+        .config("spark.hadoop.fs.local.file.impl", "org.apache.hadoop.fs.RawLocalFileSystem") \
+        .config("spark.hadoop.fs.local.checksum", "false") \
         .getOrCreate()
 
     # Define input and output paths
-    customer_path = "test_customers.csv"
-    orders_path = "test_orders.csv"
-    output_path = "test_join_output"
+    customer_path = "resources/test_customers.csv"
+    orders_path = "resources/test_orders.csv"
+    output_path = "tests/output/test_join_output"
 
     # Create sample customer data
     with open(customer_path, "w") as f:
@@ -37,7 +40,7 @@ def test_join_datasets():
 
     # Assert the results
     assert output_df.count() == 2  # Only 2 matching rows should remain
-    assert set(row["customer_id"] for row in output_df.collect()) == {"1", "2"}
+    assert set(row["customer_id"] for row in output_df.collect()) == {1, 2}
 
     # Cleanup
     os.remove(customer_path)

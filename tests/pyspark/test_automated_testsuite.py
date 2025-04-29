@@ -1,5 +1,5 @@
 import unittest
-from test.utils.custom_test_runner_utils import run_tests,CustomTestRunner
+from tests.utils.custom_test_runner_utils import run_tests,CustomTestRunner
 class TestAutomatedTestsuite(unittest.TestCase):
     def test_addition(self):
         self.assertEqual(1 + 1, 2)

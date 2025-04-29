@@ -2,7 +2,7 @@ import unittest
 import os,sys
 from pyspark.sql import SparkSession
 from src.main.pyspark.create_dataframe import DataframeUtils
-from test.utils.custom_test_runner_utils import run_tests,CustomTestRunner
+from tests.utils.custom_test_runner_utils import run_tests,CustomTestRunner
 
 print(os.getenv("PYTHONPATH"))
 

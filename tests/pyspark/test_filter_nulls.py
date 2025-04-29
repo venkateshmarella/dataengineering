@@ -14,8 +14,8 @@ class TestUtils(unittest.TestCase):
             .getOrCreate()
 
         # Define input and output paths
-        input_path = "test_filter_input.csv"
-        output_path = "test_filter_output"
+        input_path = "resources/test_filter_input.csv"
+        output_path = "tests/output/test_filter_output"
 
         # Create a sample input dataset
         with open(input_path, "w") as f:

@@ -1,7 +1,7 @@
 import os
 import shutil
 from pyspark.sql import SparkSession
-from deduplicate_data import deduplicate_data
+from main.pyspark.remove_duplicates import deduplicate_data
 
 def test_deduplicate_data():
     # Initialize SparkSession
@@ -11,8 +11,8 @@ def test_deduplicate_data():
         .getOrCreate()
 
     # Define input and output paths
-    input_path = "test_dedup_input.csv"
-    output_path = "test_dedup_output"
+    input_path = "resources/test_dedup_input.csv"
+    output_path = "tests/output/test_dedup_output"
 
     # Create a sample input dataset
     with open(input_path, "w") as f:

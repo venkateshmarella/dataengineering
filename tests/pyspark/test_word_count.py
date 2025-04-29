@@ -13,8 +13,8 @@ def test_word_count():
         .getOrCreate()
 
     # Input and output paths
-    input_path = "test_input.txt"
-    output_path = "test_output"
+    input_path = "resources/test_input.txt"
+    output_path = "tests/output/test_output"
 
     # Create a sample input file
     with open(input_path, "w") as f:

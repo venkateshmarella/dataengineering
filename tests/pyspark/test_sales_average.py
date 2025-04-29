@@ -1,7 +1,7 @@
 import os
 import shutil
 from pyspark.sql import SparkSession
-from average_sales import calculate_avg_sales
+from src.main.pyspark.sales_average import calculate_avg_sales
 
 def test_calculate_avg_sales():
     # Create a SparkSession
@@ -11,8 +11,8 @@ def test_calculate_avg_sales():
         .getOrCreate()
 
     # Input and output paths
-    input_path = "test_sales_input.csv"
-    output_path = "test_sales_output"
+    input_path = "resources/test_sales_input.csv"
+    output_path = "tests/output/test_sales_output"
 
     # Create a sample input file
     with open(input_path, "w") as f:

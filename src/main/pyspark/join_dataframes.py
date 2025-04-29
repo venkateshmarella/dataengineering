@@ -14,7 +14,4 @@ def join_datasets(customer_path, orders_path, output_path):
     joined_df = customers_df.join(orders_df, on="customer_id", how="inner")
 
     # Write the result to the output path
-    joined_df.write.csv(output_path, header=True)
-
-    # Stop SparkSession
-    spark.stop()
+    joined_df.write.mode("overwrite").csv(output_path, header=True)

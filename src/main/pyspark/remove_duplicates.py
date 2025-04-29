@@ -13,7 +13,4 @@ def deduplicate_data(input_path, output_path):
     deduplicated_df = data_df.dropDuplicates()
 
     # Write the result to the output path
-    deduplicated_df.write.csv(output_path, header=True)
-
-    # Stop SparkSession
-    spark.stop()
+    deduplicated_df.write.mode("overwrite").csv(output_path, header=True)
